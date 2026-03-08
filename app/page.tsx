@@ -30,11 +30,11 @@ export default function Home() {
 
   if (step === "results") {
     return (
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-[#0A0A0A] text-white">
         <div className="max-w-[640px] mx-auto px-6 py-12">
           <button
             onClick={() => setStep("form")}
-            className="text-neutral-500 hover:text-neutral-900 mb-8 text-sm font-medium transition-colors duration-150"
+            className="text-neutral-500 hover:text-white mb-10 text-sm font-medium transition-colors duration-150"
           >
             ← Start over
           </button>
@@ -42,48 +42,43 @@ export default function Home() {
           {eligibleResults.length > 0 && (
             <>
               <div className="mb-12">
-                <h1 className="text-2xl font-semibold text-neutral-900 mb-2">
-                  You may qualify for {eligibleResults.length} program{eligibleResults.length !== 1 ? "s" : ""}
+                <p className="text-sm text-neutral-500 uppercase tracking-widest mb-3">Your results</p>
+                <h1 className="text-3xl font-semibold text-white mb-3">
+                  You could be getting <span className="text-emerald-400">${totalBenefits.toLocaleString()}/mo</span>
                 </h1>
-                {totalBenefits > 0 && (
-                  <p className="text-neutral-500">
-                    Estimated{" "}
-                    <span className="text-neutral-900 font-semibold text-lg">
-                      ${totalBenefits.toLocaleString()}/mo
-                    </span>{" "}
-                    in combined benefits
-                  </p>
-                )}
+                <p className="text-neutral-400 text-lg">
+                  {eligibleResults.length} program{eligibleResults.length !== 1 ? "s" : ""} matched your profile. Here&apos;s what you may qualify for and how to apply today.
+                </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {eligibleResults.map((r) => (
                   <div
                     key={r.programId}
-                    className="border border-neutral-200 rounded-lg p-6"
+                    className="border border-neutral-800 rounded-lg p-6 hover:border-neutral-600 transition-colors duration-150"
                   >
-                    <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-start justify-between mb-1">
                       <div>
-                        <h3 className="font-medium text-neutral-900">{r.programName}</h3>
-                        <span className="text-xs text-neutral-400 uppercase tracking-wide">
+                        <h3 className="font-medium text-white">{r.programName}</h3>
+                        <span className="text-xs text-neutral-600 uppercase tracking-wide">
                           {r.programType}
                         </span>
                       </div>
                       {r.estimatedMonthlyBenefit && (
-                        <p className="text-lg font-semibold text-neutral-900">
+                        <p className="text-lg font-semibold text-emerald-400">
                           ${r.estimatedMonthlyBenefit}/mo
                         </p>
                       )}
                     </div>
-                    <p className="text-sm text-neutral-600 mb-4">{r.description}</p>
-                    <p className="text-sm text-neutral-500 mb-4">
-                      <span className="font-medium text-neutral-700">Next:</span> {r.nextSteps}
+                    <p className="text-sm text-neutral-400 mt-3 mb-4 leading-relaxed">{r.description}</p>
+                    <p className="text-sm text-neutral-500 mb-5 leading-relaxed">
+                      {r.nextSteps}
                     </p>
                     <a
                       href={r.applicationUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block bg-neutral-900 text-white px-4 py-2 rounded text-sm font-medium hover:bg-neutral-700 transition-colors duration-150"
+                      className="inline-block bg-white text-black px-5 py-2.5 rounded text-sm font-medium hover:bg-neutral-200 transition-colors duration-150"
                     >
                       Apply now
                     </a>
@@ -95,47 +90,46 @@ export default function Home() {
 
           {eligibleResults.length === 0 && (
             <div className="mb-12">
-              <h1 className="text-2xl font-semibold text-neutral-900 mb-2">
-                No matching programs found
+              <h1 className="text-2xl font-semibold text-white mb-3">
+                No matching programs right now
               </h1>
-              <p className="text-neutral-500">
-                Based on the information you provided, you may not currently qualify
-                for the programs in our database. This doesn&apos;t mean you&apos;re
-                ineligible — contact your local office to learn about other options.
+              <p className="text-neutral-400 leading-relaxed">
+                Based on what you shared, you may not currently qualify for the programs
+                we track. But eligibility changes — and there may be local options
+                we haven&apos;t indexed yet. Reach out to your local benefits office
+                to explore everything available.
               </p>
             </div>
           )}
 
           {ineligibleResults.length > 0 && (
-            <div className="mt-12">
-              <h2 className="text-sm font-medium text-neutral-400 uppercase tracking-wide mb-4">
-                Other programs
-              </h2>
-              <div className="space-y-3">
+            <div className="mt-16">
+              <p className="text-xs text-neutral-600 uppercase tracking-widest mb-4">
+                Not currently eligible
+              </p>
+              <div className="space-y-2">
                 {ineligibleResults.map((r) => (
                   <div
                     key={r.programId}
-                    className="border border-neutral-100 rounded-lg p-4"
+                    className="border border-neutral-900 rounded-lg p-4"
                   >
-                    <h3 className="text-sm font-medium text-neutral-500">{r.programName}</h3>
-                    <p className="text-xs text-neutral-400 mt-1">{r.description}</p>
+                    <h3 className="text-sm font-medium text-neutral-600">{r.programName}</h3>
+                    <p className="text-xs text-neutral-700 mt-1">{r.description}</p>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          <div className="mt-12 text-xs text-neutral-400 border-t border-neutral-100 pt-6">
-            <p>
-              Estimates based on federal guidelines. Actual eligibility determined
-              by your state or local office. We don&apos;t store your information.
-            </p>
+          <div className="mt-16 text-xs text-neutral-600 border-t border-neutral-800 pt-6 leading-relaxed">
+            These are estimates based on federal guidelines. Actual eligibility is
+            determined when you apply. We never store your information.
           </div>
         </div>
 
-        <footer className="border-t border-neutral-100 py-6 text-center text-xs text-neutral-400">
+        <footer className="border-t border-neutral-900 py-6 text-center text-xs text-neutral-600">
           Built by{" "}
-          <a href="https://infinitemachines.ai" className="text-neutral-500 hover:text-neutral-900 transition-colors duration-150">
+          <a href="https://infinitemachines.ai" className="text-neutral-500 hover:text-white transition-colors duration-150">
             Infinite Machines
           </a>
         </footer>
@@ -144,25 +138,26 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-white flex flex-col">
+    <main className="min-h-screen bg-[#0A0A0A] text-white flex flex-col">
       <div className="flex-1">
         {/* Hero */}
-        <div className="max-w-[640px] mx-auto px-6 pt-16 pb-8">
-          <h1 className="text-3xl font-semibold text-neutral-900 mb-3">
-            Find benefits you qualify for
+        <div className="max-w-[640px] mx-auto px-6 pt-20 pb-4">
+          <p className="text-sm text-neutral-500 uppercase tracking-widest mb-4">Benefits Navigator</p>
+          <h1 className="text-4xl font-semibold text-white mb-4 leading-tight">
+            You might be leaving<br />money on the table.
           </h1>
-          <p className="text-neutral-500 max-w-md">
-            Answer a few questions. We&apos;ll show you government programs that
-            could help. Free, private, 30 seconds.
+          <p className="text-neutral-400 text-lg max-w-md leading-relaxed">
+            Millions qualify for government programs and never apply.
+            Answer 4 questions — we&apos;ll tell you what you&apos;re missing in 30 seconds.
           </p>
         </div>
 
         {/* Form */}
-        <div className="max-w-[640px] mx-auto px-6 pb-16">
+        <div className="max-w-[640px] mx-auto px-6 pt-10 pb-20">
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* ZIP */}
             <div>
-              <label htmlFor="zip" className="block text-sm font-medium text-neutral-700 mb-2">
+              <label htmlFor="zip" className="block text-sm font-medium text-neutral-300 mb-2">
                 ZIP code
               </label>
               <input
@@ -175,17 +170,17 @@ export default function Home() {
                 placeholder="60601"
                 value={formData.zip}
                 onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 text-base outline-none transition-all duration-150"
+                className="w-full px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-600 focus:ring-1 focus:ring-neutral-500 focus:border-neutral-500 text-base outline-none transition-all duration-150"
               />
-              <p className="mt-1.5 text-xs text-neutral-400">
+              <p className="mt-1.5 text-xs text-neutral-600">
                 Used to find local programs near you
               </p>
             </div>
 
             {/* Household Size */}
             <div>
-              <label htmlFor="household" className="block text-sm font-medium text-neutral-700 mb-2">
-                Household size
+              <label htmlFor="household" className="block text-sm font-medium text-neutral-300 mb-2">
+                How many people in your household?
               </label>
               <select
                 id="household"
@@ -193,7 +188,7 @@ export default function Home() {
                 onChange={(e) =>
                   setFormData({ ...formData, householdSize: parseInt(e.target.value) })
                 }
-                className="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 text-base outline-none transition-all duration-150"
+                className="w-full px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white focus:ring-1 focus:ring-neutral-500 focus:border-neutral-500 text-base outline-none transition-all duration-150"
               >
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                   <option key={n} value={n}>
@@ -201,18 +196,18 @@ export default function Home() {
                   </option>
                 ))}
               </select>
-              <p className="mt-1.5 text-xs text-neutral-400">
+              <p className="mt-1.5 text-xs text-neutral-600">
                 Everyone who lives and eats together
               </p>
             </div>
 
             {/* Monthly Income */}
             <div>
-              <label htmlFor="income" className="block text-sm font-medium text-neutral-700 mb-2">
-                Monthly household income
+              <label htmlFor="income" className="block text-sm font-medium text-neutral-300 mb-2">
+                Monthly household income (before taxes)
               </label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-600">
                   $
                 </span>
                 <input
@@ -225,18 +220,18 @@ export default function Home() {
                   onChange={(e) =>
                     setFormData({ ...formData, monthlyIncome: parseInt(e.target.value) || 0 })
                   }
-                  className="w-full pl-8 pr-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-neutral-900 focus:border-neutral-900 text-base outline-none transition-all duration-150"
+                  className="w-full pl-8 pr-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-600 focus:ring-1 focus:ring-neutral-500 focus:border-neutral-500 text-base outline-none transition-all duration-150"
                 />
               </div>
-              <p className="mt-1.5 text-xs text-neutral-400">
-                Before taxes — wages, tips, Social Security, all sources
+              <p className="mt-1.5 text-xs text-neutral-600">
+                Wages, tips, Social Security, child support — all sources
               </p>
             </div>
 
             {/* Situation */}
             <div>
-              <p className="block text-sm font-medium text-neutral-700 mb-3">
-                Your situation
+              <p className="block text-sm font-medium text-neutral-300 mb-3">
+                Check anything that applies
               </p>
               <div className="space-y-2">
                 {[
@@ -247,7 +242,7 @@ export default function Home() {
                 ].map(({ key, label }) => (
                   <label
                     key={key}
-                    className="flex items-center gap-3 p-3 rounded-lg border border-neutral-200 hover:border-neutral-400 cursor-pointer transition-colors duration-150"
+                    className="flex items-center gap-3 p-3 rounded-lg border border-neutral-800 hover:border-neutral-600 cursor-pointer transition-colors duration-150"
                   >
                     <input
                       type="checkbox"
@@ -255,9 +250,9 @@ export default function Home() {
                       onChange={(e) =>
                         setFormData({ ...formData, [key]: e.target.checked })
                       }
-                      className="h-4 w-4 rounded border-neutral-300 text-neutral-900 focus:ring-neutral-900"
+                      className="h-4 w-4 rounded border-neutral-600 bg-neutral-900 text-white focus:ring-neutral-500"
                     />
-                    <span className="text-sm text-neutral-700">{label}</span>
+                    <span className="text-sm text-neutral-300">{label}</span>
                   </label>
                 ))}
               </div>
@@ -265,21 +260,21 @@ export default function Home() {
 
             <button
               type="submit"
-              className="w-full bg-neutral-900 text-white py-3.5 rounded-lg text-sm font-medium hover:bg-neutral-700 transition-colors duration-150"
+              className="w-full bg-white text-black py-3.5 rounded-lg text-sm font-semibold hover:bg-neutral-200 transition-colors duration-150"
             >
-              Show my benefits
+              Show what I qualify for
             </button>
 
-            <p className="text-center text-xs text-neutral-400">
-              Your data stays in your browser. Nothing is stored.
+            <p className="text-center text-xs text-neutral-600">
+              Everything stays in your browser. Nothing stored. Ever.
             </p>
           </form>
         </div>
       </div>
 
-      <footer className="border-t border-neutral-100 py-6 text-center text-xs text-neutral-400">
+      <footer className="border-t border-neutral-900 py-6 text-center text-xs text-neutral-600">
         Built by{" "}
-        <a href="https://infinitemachines.ai" className="text-neutral-500 hover:text-neutral-900 transition-colors duration-150">
+        <a href="https://infinitemachines.ai" className="text-neutral-500 hover:text-white transition-colors duration-150">
           Infinite Machines
         </a>
       </footer>
