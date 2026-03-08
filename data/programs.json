@@ -1,0 +1,120 @@
+{
+  "programs": [
+    {
+      "id": "snap_il",
+      "name": "SNAP (Supplemental Nutrition Assistance Program)",
+      "type": "federal_state",
+      "description": "Provides monthly benefits to help low-income households buy the food they need for good health. Illinois specific rules apply.",
+      "eligibility": {
+        "max_gross_income_pct_fpl": 165,
+        "max_net_income_pct_fpl": 100,
+        "income_limits_gross_monthly": {
+          "1": 2152,
+          "2": 2909,
+          "3": 3665,
+          "4": 4421,
+          "5": 5177,
+          "6": 5934,
+          "7": 6690,
+          "8": 7446
+        },
+        "asset_limit": 3000,
+        "asset_limit_elderly_disabled": 4500,
+        "work_requirements": "ABAWDs (18-64) must work, volunteer, or train 80 hours/month. If unmet, limited to 3 months of benefits in a 3-year period (2024-2026). Exemptions: pregnant, disabled, or caring for child under 14.",
+        "residency": "Illinois resident",
+        "citizenship": "US citizen or qualified non-citizen"
+      },
+      "application_url": "https://abe.illinois.gov/abe/access/",
+      "apply_in_person": "Local IDHS Family Community Resource Center"
+    },
+    {
+      "id": "wic_il",
+      "name": "WIC (Women, Infants, and Children)",
+      "type": "federal_state",
+      "description": "Supplemental foods, health care referrals, and nutrition education for low-income pregnant, breastfeeding, and non-breastfeeding postpartum women, and to infants and children up to age 5.",
+      "eligibility": {
+        "max_gross_income_pct_fpl": 185,
+        "income_limits_gross_monthly": {
+          "1": 2413,
+          "2": 3261,
+          "3": 4109,
+          "4": 4957,
+          "5": 5805,
+          "6": 6653,
+          "7": 7501,
+          "8": 8349
+        },
+        "target_demographics": "Pregnant, postpartum (up to 6mo, or 1yr if breastfeeding), infants, children up to age 5",
+        "medical_requirement": "Must have a nutritional risk determined by a health professional",
+        "residency": "Illinois resident"
+      },
+      "application_url": "https://www.dhs.state.il.us/page.aspx?item=30513",
+      "apply_in_person": "Local WIC clinic"
+    },
+    {
+      "id": "all_kids_il",
+      "name": "Illinois All Kids (Medicaid for Children)",
+      "type": "state",
+      "description": "Comprehensive health insurance program for children in Illinois, covering doctor visits, hospital stays, dental, and vision.",
+      "eligibility": {
+        "max_gross_income_pct_fpl": 318,
+        "age_limit": 18,
+        "asset_limit": 0,
+        "residency": "Illinois resident",
+        "citizenship": "Regardless of immigration status"
+      },
+      "application_url": "https://abe.illinois.gov/abe/access/",
+      "apply_in_person": "Local IDHS office or All Kids Application Agent"
+    },
+    {
+      "id": "liheap_il",
+      "name": "LIHEAP (Low Income Home Energy Assistance Program)",
+      "type": "federal_state",
+      "description": "Helps eligible low-income households pay for winter energy services.",
+      "eligibility": {
+        "max_gross_income_pct_fpl": 200,
+        "residency": "Illinois resident",
+        "requirement": "Must be responsible for home energy costs"
+      },
+      "application_url": "https://helpillinoisfamilies.com/",
+      "apply_in_person": "Local Community Action Agency"
+    },
+    {
+      "id": "tanf_il",
+      "name": "TANF (Temporary Assistance for Needy Families)",
+      "type": "federal_state",
+      "description": "Temporary financial assistance for pregnant women and families with one or more dependent children.",
+      "eligibility": {
+        "target_demographics": "Families with dependent children or pregnant women",
+        "residency": "Illinois resident",
+        "work_requirements": "Must participate in employment and training activities unless exempt"
+      },
+      "application_url": "https://abe.illinois.gov/abe/access/",
+      "apply_in_person": "Local IDHS office"
+    },
+    {
+      "id": "cps_meals",
+      "name": "Chicago Public Schools Free School Meals",
+      "type": "local",
+      "description": "Provides free breakfast and lunch to all enrolled students under the Community Eligibility Provision (CEP).",
+      "eligibility": {
+        "requirement": "Must be an enrolled student in a participating Chicago Public School",
+        "income_limits": "None (Universal free meals)"
+      },
+      "application_url": "No application required for CEP schools",
+      "apply_in_person": "N/A"
+    },
+    {
+      "id": "chicago_food_pantries",
+      "name": "Greater Chicago Food Depository Network",
+      "type": "local",
+      "description": "Network of local food pantries, soup kitchens, and emergency food programs across Cook County.",
+      "eligibility": {
+        "income_limits": "Varies by pantry, many offer emergency food with no strict income verification",
+        "residency": "Cook County / Chicago area"
+      },
+      "application_url": "https://www.chicagosfoodbank.org/find-food/",
+      "apply_in_person": "Local community pantries"
+    }
+  ]
+}
