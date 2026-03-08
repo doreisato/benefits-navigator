@@ -23,6 +23,7 @@ export default function Home() {
   const [monthlyIncome, setMonthlyIncome] = useState(2000);
   const [hasChildren, setHasChildren] = useState(true);
   const [results, setResults] = useState<BenefitResult[] | null>(null);
+  const [zipError, setZipError] = useState<string | null>(null);
 
   const filteredNodes =
     activeCategory === "All"
@@ -34,10 +35,21 @@ export default function Home() {
     [results],
   );
 
+  const isZipValid = useMemo(() => /^\d{5}$/.test(zip), [zip]);
+
   const onRunEstimate = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const sanitizedZip = zip.trim();
+
+    if (!/^\d{5}$/.test(sanitizedZip)) {
+      setZipError("Enter a valid 5-digit ZIP code.");
+      setResults(null);
+      return;
+    }
+
+    setZipError(null);
+
     const nextResults = calculateBenefits({
       zip: sanitizedZip,
       householdSize: Math.max(1, householdSize),
@@ -76,11 +88,19 @@ export default function Home() {
                 inputMode="numeric"
                 maxLength={5}
                 value={zip}
-                onChange={(e) => setZip(e.target.value.replace(/\D/g, "").slice(0, 5))}
+                onChange={(e) => {
+                  setZip(e.target.value.replace(/\D/g, "").slice(0, 5));
+                  if (zipError) setZipError(null);
+                }}
                 className={ds.input}
                 placeholder="60601"
+                aria-invalid={!isZipValid}
+                aria-describedby="zip-help"
                 required
               />
+              <p id="zip-help" className={`mt-2 text-xs ${zipError ? "text-neutral-300" : "text-neutral-500"}`}>
+                {zipError ? zipError : "ZIP routes you to state-specific application links."}
+              </p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
@@ -127,7 +147,11 @@ export default function Home() {
               Household includes children
             </label>
 
-            <button type="submit" className={ds.buttonPrimary}>
+            <button
+              type="submit"
+              disabled={!isZipValid}
+              className={`${ds.buttonPrimary} disabled:cursor-not-allowed disabled:opacity-50`}
+            >
               Run estimate
             </button>
           </form>
