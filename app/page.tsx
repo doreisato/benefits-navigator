@@ -129,7 +129,7 @@ export default function Home() {
 
         <footer className="border-t border-neutral-900 py-6 text-center text-xs text-neutral-600">
           Built by{" "}
-          <a href="https://infinitemachines.ai" className="text-neutral-500 hover:text-white transition-colors duration-150">
+          <a href="https://infinite-machines-production.up.railway.app" className="text-neutral-500 hover:text-white transition-colors duration-150">
             Infinite Machines
           </a>
         </footer>
@@ -274,7 +274,7 @@ export default function Home() {
 
       <footer className="border-t border-neutral-900 py-6 text-center text-xs text-neutral-600">
         Built by{" "}
-        <a href="https://infinitemachines.ai" className="text-neutral-500 hover:text-white transition-colors duration-150">
+        <a href="https://infinite-machines-production.up.railway.app" className="text-neutral-500 hover:text-white transition-colors duration-150">
           Infinite Machines
         </a>
       </footer>
