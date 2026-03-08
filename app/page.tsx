@@ -19,8 +19,24 @@ export default function Home() {
     isElderly: false,
   });
 
+  const zipError = formData.zip.length === 0
+    ? "Enter your 5-digit ZIP code"
+    : !/^\d{5}$/.test(formData.zip)
+      ? "ZIP code must be exactly 5 digits"
+      : "";
+
+  const incomeError = formData.monthlyIncome <= 0
+    ? "Enter monthly household income greater than $0"
+    : "";
+
+  const canSubmit = !zipError && !incomeError;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!canSubmit) {
+      return;
+    }
+
     const r = calculateBenefits(formData);
     setResults(r);
     setTotalBenefits(getTotalEstimatedBenefits(r));
@@ -171,12 +187,19 @@ export default function Home() {
                 required
                 placeholder="60601"
                 value={formData.zip}
-                onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, "").slice(0, 5);
+                  setFormData({ ...formData, zip: val });
+                }}
+                aria-invalid={!!zipError}
                 className={`${ds.input} text-base`}
               />
               <p className="mt-1.5 text-xs text-neutral-600">
                 Used to find local programs near you
               </p>
+              {zipError && (
+                <p className="mt-2 text-xs text-amber-400">{zipError}</p>
+              )}
             </div>
 
             {/* Household Size */}
@@ -225,12 +248,16 @@ export default function Home() {
                       setFormData({ ...formData, monthlyIncome: parseInt(val) || 0 });
                     }
                   }}
+                  aria-invalid={!!incomeError}
                   className={`${ds.input} text-base pl-8 pr-4`}
                 />
               </div>
               <p className="mt-1.5 text-xs text-neutral-600">
                 Wages, tips, Social Security, child support — all sources
               </p>
+              {incomeError && (
+                <p className="mt-2 text-xs text-amber-400">{incomeError}</p>
+              )}
             </div>
 
             {/* Situation */}
@@ -291,7 +318,8 @@ export default function Home() {
 
             <button
               type="submit"
-              className={ds.buttonPrimary}
+              disabled={!canSubmit}
+              className={`${ds.buttonPrimary} disabled:bg-neutral-700 disabled:text-neutral-400 disabled:cursor-not-allowed`}
             >
               Show what I qualify for
             </button>
