@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { calculateBenefits, getTotalEstimatedBenefits, type UserInput, type BenefitResult } from "@/lib/benefits-engine";
+import { ds } from "@/lib/design-system";
 
 export default function Home() {
   const [step, setStep] = useState<"form" | "results">("form");
@@ -31,7 +32,7 @@ export default function Home() {
 
   if (step === "results") {
     return (
-      <main className="min-h-screen bg-[#0A0A0A] text-white">
+      <main className={ds.page}>
         <div className="max-w-[640px] mx-auto px-6 py-12">
           <button
             onClick={() => setStep("form")}
@@ -56,7 +57,7 @@ export default function Home() {
                 {eligibleResults.map((r) => (
                   <div
                     key={r.programId}
-                    className="border border-neutral-800 rounded-lg p-6 hover:border-neutral-600 transition-colors duration-150"
+                    className={`${ds.card} hover:border-neutral-600 transition-colors duration-150`}
                   >
                     <div className="flex items-start justify-between mb-1">
                       <div>
@@ -171,7 +172,7 @@ export default function Home() {
                 placeholder="60601"
                 value={formData.zip}
                 onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-600 focus:ring-1 focus:ring-neutral-500 focus:border-neutral-500 text-base outline-none transition-all duration-150"
+                className={`${ds.input} text-base`}
               />
               <p className="mt-1.5 text-xs text-neutral-600">
                 Used to find local programs near you
@@ -189,7 +190,7 @@ export default function Home() {
                 onChange={(e) =>
                   setFormData({ ...formData, householdSize: parseInt(e.target.value) })
                 }
-                className="w-full px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white focus:ring-1 focus:ring-neutral-500 focus:border-neutral-500 text-base outline-none transition-all duration-150"
+                className={`${ds.input} text-base`}
               >
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                   <option key={n} value={n}>
@@ -224,7 +225,7 @@ export default function Home() {
                       setFormData({ ...formData, monthlyIncome: parseInt(val) || 0 });
                     }
                   }}
-                  className="w-full pl-8 pr-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-600 focus:ring-1 focus:ring-neutral-500 focus:border-neutral-500 text-base outline-none transition-all duration-150"
+                  className={`${ds.input} text-base pl-8 pr-4`}
                 />
               </div>
               <p className="mt-1.5 text-xs text-neutral-600">
@@ -274,7 +275,7 @@ export default function Home() {
                   onChange={(e) =>
                     setFormData({ ...formData, childrenUnder5: parseInt(e.target.value) })
                   }
-                  className="w-full px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white focus:ring-1 focus:ring-neutral-500 focus:border-neutral-500 text-base outline-none transition-all duration-150"
+                  className={`${ds.input} text-base`}
                 >
                   {[0, 1, 2, 3, 4, 5].map((n) => (
                     <option key={n} value={n}>
@@ -290,7 +291,7 @@ export default function Home() {
 
             <button
               type="submit"
-              className="w-full bg-white text-black py-3.5 rounded-lg text-sm font-semibold hover:bg-neutral-200 transition-colors duration-150"
+              className={ds.buttonPrimary}
             >
               Show what I qualify for
             </button>
