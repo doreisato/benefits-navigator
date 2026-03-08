@@ -1,1 +1,2 @@
 - 2026-03-08 (Loop): Replaced number input with text input to allow comma-separated currency values for Income. Removed emojis from benefits data to strictly follow the monochrome design system.
+- 2026-03-08 (Loop): Added "How many children under 5?" field that conditionally appears when user selects "I have children under 18". Fixes WIC eligibility accuracy by eliminating false positives for families with only older children. Field includes helper text explaining it's used for WIC (Women, Infants & Children) program eligibility.
