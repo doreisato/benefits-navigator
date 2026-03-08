@@ -82,7 +82,7 @@ export function calculateBenefits(input: UserInput): BenefitResult[] {
     nextSteps: isIllinois
       ? "Apply online at ABE (Application for Benefits Eligibility) or visit your local IDHS office."
       : "Apply through your state's SNAP office.",
-    icon: "🛒",
+    icon: "",
   });
 
   // --- WIC ---
@@ -102,7 +102,7 @@ export function calculateBenefits(input: UserInput): BenefitResult[] {
     description:
       "Nutrition assistance for pregnant/postpartum women, infants, and children under 5. Covers formula, milk, eggs, fruits, vegetables, and more.",
     nextSteps: "Contact your local WIC clinic to schedule a certification appointment.",
-    icon: "🍎",
+    icon: "",
   });
 
   // --- Medicaid ---
@@ -123,7 +123,7 @@ export function calculateBenefits(input: UserInput): BenefitResult[] {
     nextSteps: isIllinois
       ? "Apply online at ABE or visit your local IDHS office. Coverage can start the same month you apply."
       : "Apply through your state Medicaid office or Healthcare.gov.",
-    icon: "🏥",
+    icon: "",
   });
 
   // --- LIHEAP (energy assistance) ---
@@ -143,7 +143,7 @@ export function calculateBenefits(input: UserInput): BenefitResult[] {
     nextSteps: isIllinois
       ? "Apply through CEDA (Community and Economic Development Association) or your local community action agency."
       : "Contact your state or local LIHEAP office.",
-    icon: "💡",
+    icon: "",
   });
 
   // --- Free/Reduced School Meals ---
@@ -163,7 +163,7 @@ export function calculateBenefits(input: UserInput): BenefitResult[] {
         ? "Your children may qualify for FREE breakfast and lunch at school."
         : "Your children may qualify for reduced-price meals (40¢ lunch, 30¢ breakfast) at school.",
       nextSteps: "Contact your child's school or school district for an application. If you receive SNAP, your children automatically qualify.",
-      icon: "🏫",
+      icon: "",
     });
   }
 
@@ -183,7 +183,7 @@ export function calculateBenefits(input: UserInput): BenefitResult[] {
         : "https://www.acf.hhs.gov/ofa/programs/temporary-assistance-needy-families-tanf",
       description: "Monthly cash assistance for families with children. Helps cover rent, utilities, and other basic needs.",
       nextSteps: "Apply online at ABE or at your local IDHS office. You'll need to participate in work activities.",
-      icon: "💵",
+      icon: "",
     });
   }
 
@@ -201,7 +201,7 @@ export function calculateBenefits(input: UserInput): BenefitResult[] {
         "Free groceries available at hundreds of food pantries across Chicago. No income verification required at most locations.",
       nextSteps:
         "Visit chicagosfoodbank.org/find-food to find your nearest pantry. Most are walk-in, no appointment needed.",
-      icon: "📦",
+      icon: "",
     });
   }
 

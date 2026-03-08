@@ -212,14 +212,17 @@ export default function Home() {
                 </span>
                 <input
                   id="income"
-                  type="number"
-                  min={0}
+                  type="text"
+                  inputMode="numeric"
                   required
                   placeholder="2,000"
-                  value={formData.monthlyIncome || ""}
-                  onChange={(e) =>
-                    setFormData({ ...formData, monthlyIncome: parseInt(e.target.value) || 0 })
-                  }
+                  value={formData.monthlyIncome ? formData.monthlyIncome.toLocaleString() : ""}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/,/g, '');
+                    if (/^\d*$/.test(val)) {
+                      setFormData({ ...formData, monthlyIncome: parseInt(val) || 0 });
+                    }
+                  }}
                   className="w-full pl-8 pr-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white placeholder-neutral-600 focus:ring-1 focus:ring-neutral-500 focus:border-neutral-500 text-base outline-none transition-all duration-150"
                 />
               </div>
