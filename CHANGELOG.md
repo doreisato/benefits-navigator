@@ -1,0 +1,1 @@
+- 2026-03-08 (Loop): Replaced number input with text input to allow comma-separated currency values for Income. Removed emojis from benefits data to strictly follow the monochrome design system.

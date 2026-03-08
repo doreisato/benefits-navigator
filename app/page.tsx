@@ -12,6 +12,7 @@ export default function Home() {
     householdSize: 1,
     monthlyIncome: 0,
     hasChildren: false,
+    childrenUnder5: 0,
     isPregnant: false,
     isDisabled: false,
     isElderly: false,
@@ -260,6 +261,32 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
+            {/* Children Under 5 (conditional) */}
+            {formData.hasChildren && (
+              <div>
+                <label htmlFor="childrenUnder5" className="block text-sm font-medium text-neutral-300 mb-2">
+                  How many children under 5?
+                </label>
+                <select
+                  id="childrenUnder5"
+                  value={formData.childrenUnder5 || 0}
+                  onChange={(e) =>
+                    setFormData({ ...formData, childrenUnder5: parseInt(e.target.value) })
+                  }
+                  className="w-full px-4 py-3 rounded-lg bg-neutral-900 border border-neutral-800 text-white focus:ring-1 focus:ring-neutral-500 focus:border-neutral-500 text-base outline-none transition-all duration-150"
+                >
+                  {[0, 1, 2, 3, 4, 5].map((n) => (
+                    <option key={n} value={n}>
+                      {n === 0 ? "None" : n}
+                    </option>
+                  ))}
+                </select>
+                <p className="mt-1.5 text-xs text-neutral-600">
+                  Used for WIC eligibility (Women, Infants & Children program)
+                </p>
+              </div>
+            )}
 
             <button
               type="submit"

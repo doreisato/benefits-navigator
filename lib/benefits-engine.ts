@@ -13,7 +13,7 @@ export interface UserInput {
   monthlyIncome: number;
   age?: number;
   hasChildren?: boolean;
-  childrenAges?: number[];
+  childrenUnder5?: number;
   isPregnant?: boolean;
   isDisabled?: boolean;
   isElderly?: boolean;
@@ -86,7 +86,7 @@ export function calculateBenefits(input: UserInput): BenefitResult[] {
   });
 
   // --- WIC ---
-  const hasWicEligibleChildren = !!(input.hasChildren && (input.childrenAges?.some(a => a < 5) ?? true));
+  const hasWicEligibleChildren = !!((input.childrenUnder5 ?? 0) > 0);
   const wicEligible = !!(pctFPL <= 185 && (input.isPregnant || hasWicEligibleChildren));
 
   results.push({
