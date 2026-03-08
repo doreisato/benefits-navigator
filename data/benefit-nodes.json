@@ -1,0 +1,42 @@
+[
+  {
+    "id": "snap",
+    "name": "SNAP",
+    "description": "The Supplemental Nutrition Assistance Program (SNAP) provides monthly funds for food.",
+    "category": "Food",
+    "tags": ["food", "nutrition", "groceries"],
+    "url": "https://www.fns.usda.gov/snap/state-directory"
+  },
+  {
+    "id": "wic",
+    "name": "WIC",
+    "description": "The Special Supplemental Nutrition Program for Women, Infants, and Children (WIC) supports mothers and young children.",
+    "category": "Food",
+    "tags": ["food", "children", "infants", "women"],
+    "url": "https://www.fns.usda.gov/wic/wic-contacts"
+  },
+  {
+    "id": "medicaid",
+    "name": "Medicaid",
+    "description": "Medicaid provides free or low-cost health coverage to millions of Americans.",
+    "category": "Health",
+    "tags": ["health", "insurance", "medical"],
+    "url": "https://www.medicaid.gov/about-us/beneficiary-resources/index.html"
+  },
+  {
+    "id": "liheap",
+    "name": "LIHEAP",
+    "description": "The Low Income Home Energy Assistance Program (LIHEAP) helps families with energy costs.",
+    "category": "Housing",
+    "tags": ["housing", "energy", "utilities"],
+    "url": "https://www.acf.hhs.gov/ocs/liheap-state-and-territory-contact-listing"
+  },
+  {
+    "id": "section8",
+    "name": "Section 8 Housing",
+    "description": "The Housing Choice Voucher Program (Section 8) helps families afford safe, decent housing.",
+    "category": "Housing",
+    "tags": ["housing", "rent", "vouchers"],
+    "url": "https://www.hud.gov/topics/housing_choice_voucher_program_section_8"
+  }
+]
